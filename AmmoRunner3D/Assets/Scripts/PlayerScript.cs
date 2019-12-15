@@ -6,18 +6,22 @@ using UnityEngine.UI;
 public class PlayerScript : MonoBehaviour
 {
     [SerializeField]
-    float moveSpeed = 4f;
+    float moveSpeed = 12f;
     Vector3 forward, right;
+
+    private float initialMoveSpeed;
 
     public int[] ammoInventory;    //0 = light ammo, 1 = medium ammo, 2 = heavy ammo
     int weight = 0, weightLimit = 100, Ammo1Weight = 20, Ammo2Weight = 30, Ammo3Weight = 40;   //Ammo1 = light ammo, Ammo2 = medium ammo, Ammo3 = heavy ammo
-    public Text lightAmmoText, mediumAmmoText, heavyAmmoText, resupplyText; //update text from this script
+    public Text lightAmmoText, mediumAmmoText, heavyAmmoText, resupplyText, allyText; //update text from this script
     public Slider weightLimitBar;
 
+    private float k;
 
     // Start is called before the first frame update
     void Start()
     {
+        initialMoveSpeed = moveSpeed;
         //movement based
         forward = Camera.main.transform.forward;
         forward.y = 0;
@@ -33,8 +37,6 @@ public class PlayerScript : MonoBehaviour
         //if (Input.anyKey)
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             Move();
-
-        Inventory();
     }
 
 
@@ -56,6 +58,7 @@ public class PlayerScript : MonoBehaviour
     void Inventory()
     {
         weight = (Ammo1Weight * ammoInventory[0]) + (Ammo2Weight * ammoInventory[1]) + (Ammo3Weight * ammoInventory[2]);
+        k = initialMoveSpeed * (1f - (weight * 0.5f) / 100);
     }
 
 
@@ -67,6 +70,10 @@ public class PlayerScript : MonoBehaviour
         {
             resupplyText.gameObject.SetActive(true);
         }
+        else if(other.gameObject.tag == "Ally")
+        {
+            allyText.gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -74,6 +81,10 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.tag == "Resupply")
         {
             resupplyText.gameObject.SetActive(false);
+        }
+        else if (other.gameObject.tag == "Ally")
+        {
+            allyText.gameObject.SetActive(false);
         }
     }
 
@@ -85,21 +96,27 @@ public class PlayerScript : MonoBehaviour
             {
                 ammoInventory[0]++;
                 lightAmmoText.text = ammoInventory[0].ToString();
+                Inventory();
                 weightLimitBar.value = weight;
+                moveSpeed = k;
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2) && (weight + Ammo2Weight) <= weightLimit) //pick up medium ammo
             {
                 ammoInventory[1]++;
                 mediumAmmoText.text = ammoInventory[1].ToString();
+                Inventory();
                 weightLimitBar.value = weight;
+                moveSpeed = k;
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha3) && (weight + Ammo3Weight) <= weightLimit) //pick up heavy ammo
             {
                 ammoInventory[2]++;
                 heavyAmmoText.text = ammoInventory[2].ToString();
+                Inventory();
                 weightLimitBar.value = weight;
+                moveSpeed = k;
             }
 
             if (Input.GetKeyDown(KeyCode.R))    //dump all ammo
@@ -110,7 +127,73 @@ public class PlayerScript : MonoBehaviour
                 lightAmmoText.text = "0";
                 mediumAmmoText.text = "0";
                 heavyAmmoText.text = "0";
+                Inventory();
                 weightLimitBar.value = 0;
+                moveSpeed = initialMoveSpeed;
+            }
+        }
+        else if(other.gameObject.tag == "Ally")
+        {
+            int tempAmmoVar = other.gameObject.GetComponent<AllyScript>().ammoType;
+            int remainingAmmo = other.gameObject.GetComponent<AllyScript>().ammo;
+            if (tempAmmoVar == 0)
+            {
+                if(ammoInventory[0] != 0 && remainingAmmo <= 50)
+                {
+                    allyText.text = "Ally needs light ammo.\nPress R to give ammo.";
+                }
+                else if(ammoInventory[0] == 0 && remainingAmmo <= 50)
+                {
+                    allyText.text = "Ally needs light ammo.";
+                }
+                else
+                {
+                    allyText.text = "Ally doesn't need to reload.";
+                }
+            }
+            else if(tempAmmoVar == 1)
+            {
+                if (ammoInventory[1] != 0 && remainingAmmo <= 50)
+                {
+                    allyText.text = "Ally needs medium ammo.\nPress R to give ammo.";
+                }
+                else if (ammoInventory[1] == 0 && remainingAmmo <= 50)
+                {
+                    allyText.text = "Ally needs medium ammo.";
+                }
+                else
+                {
+                    allyText.text = "Ally doesn't need to reload.";
+                }
+            }
+            else
+            {
+                if (ammoInventory[2] != 0 && remainingAmmo <= 50)
+                {
+                    allyText.text = "Ally needs heavy ammo.\nPress R to give ammo.";
+                }
+                else if (ammoInventory[2] == 0 && remainingAmmo <= 50)
+                {
+                    allyText.text = "Ally needs heavy ammo.";
+                }
+                else
+                {
+                    allyText.text = "Ally doesn't need to reload.";
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.R) && ammoInventory[tempAmmoVar] != 0 && remainingAmmo <= 50)    //"give" (hey there's the theme) ammo to ally
+            {
+                ammoInventory[tempAmmoVar]--;
+                if(tempAmmoVar == 0)
+                    lightAmmoText.text = ammoInventory[0].ToString();
+                else if(tempAmmoVar == 1)
+                    mediumAmmoText.text = ammoInventory[1].ToString();
+                else
+                    heavyAmmoText.text = ammoInventory[2].ToString();
+                other.gameObject.GetComponent<AllyScript>().AmmoDelivered();
+                Inventory();
+                moveSpeed = k;
+                weightLimitBar.value = weight;
             }
         }
     }
