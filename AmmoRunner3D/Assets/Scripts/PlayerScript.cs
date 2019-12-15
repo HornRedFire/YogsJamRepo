@@ -17,6 +17,7 @@ public class PlayerScript : MonoBehaviour
     public Slider weightLimitBar;
 
     private float k;
+    private bool stopMultipleParticleEffects = false;
 
     // Start is called before the first frame update
     void Start()
@@ -134,6 +135,8 @@ public class PlayerScript : MonoBehaviour
         }
         else if(other.gameObject.tag == "Ally")
         {
+            if(other.gameObject.GetComponent<AllyScript>().destroyed) allyText.gameObject.SetActive(false);     //prevents text remaining on screen after ally is destroyed
+
             int tempAmmoVar = other.gameObject.GetComponent<AllyScript>().ammoType;
             int remainingAmmo = other.gameObject.GetComponent<AllyScript>().ammo;
             if (tempAmmoVar == 0)
@@ -196,5 +199,18 @@ public class PlayerScript : MonoBehaviour
                 weightLimitBar.value = weight;
             }
         }
+        else if(other.gameObject.tag == "Mine" && !stopMultipleParticleEffects)
+        {
+            stopMultipleParticleEffects = true;
+            StartCoroutine(ActivateMine(other.gameObject));
+        }
+    }
+
+    IEnumerator ActivateMine(GameObject g)
+    {
+        g.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+        yield return new WaitForSeconds(0.3f);
+        Destroy(g);
+        WinLoseConditionScript.mineActivated = true;
     }
 }

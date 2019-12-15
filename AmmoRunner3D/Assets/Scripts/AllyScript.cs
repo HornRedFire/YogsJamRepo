@@ -10,6 +10,7 @@ public class AllyScript : MonoBehaviour
     private ParticleSystem explosion;
 
     private bool wait = false;          //needed this because Update was being called every frame so it didn't wait until ammo is decreased once, so the game would end as soon as it started
+    public bool destroyed = false; 
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +22,9 @@ public class AllyScript : MonoBehaviour
     void Update()
     {
         if (!wait) {
-            if (ammo <= 0)
+            if (ammo <= 0 && !destroyed)
             {
-                WinLoseConditionScript.alliesWithoutAmmo++;         //increase number of allies without ammo
+                destroyed = true;
                 StartCoroutine(DestroyAlly());
             }
             else if (ammo > 0)
@@ -32,6 +33,14 @@ public class AllyScript : MonoBehaviour
                 StartCoroutine(DecreaseAmmo());          //decreases ammo every second
             }
         }
+        if(ammo < 51)
+        {
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        }
     }
 
     IEnumerator DestroyAlly()
@@ -39,6 +48,7 @@ public class AllyScript : MonoBehaviour
         explosion.Play();
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
+        WinLoseConditionScript.alliesWithoutAmmo++;         //increase number of allies without ammo
     }
 
     IEnumerator DecreaseAmmo()
