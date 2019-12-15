@@ -10,8 +10,7 @@ public class PlayerScript : MonoBehaviour
     Vector3 forward, right;
 
     public int[] ammoInventory;    //0 = light ammo, 1 = medium ammo, 2 = heavy ammo
-    public int Ammo1Weight, Ammo2Weight, Ammo3Weight;   //Ammo1 = light ammo, Ammo2 = medium ammo, Ammo3 = heavy ammo
-    int weight, weightLimit = 100;
+    int weight = 0, weightLimit = 100, Ammo1Weight = 20, Ammo2Weight = 30, Ammo3Weight = 40;   //Ammo1 = light ammo, Ammo2 = medium ammo, Ammo3 = heavy ammo
     public Text lightAmmoText, mediumAmmoText, heavyAmmoText, resupplyText; //update text from this script
     public Slider weightLimitBar;
 

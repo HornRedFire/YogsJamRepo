@@ -430,9 +430,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 12
   ammoInventory: 000000000000000000000000
-  Ammo1Weight: 20
-  Ammo2Weight: 30
-  Ammo3Weight: 40
   lightAmmoText: {fileID: 1320995932}
   mediumAmmoText: {fileID: 1482196330}
   heavyAmmoText: {fileID: 1529233552}
