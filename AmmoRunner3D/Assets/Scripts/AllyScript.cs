@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AllyScript : MonoBehaviour
 {
-    public int ammo = 0;
+    public int ammo = 120;
     public int ammoType = 0;            //0-light, 1-medium, 2-heavy
     public int rateOfFire = 1;          //amount of ammo used every second
     private ParticleSystem explosion;
@@ -60,6 +60,6 @@ public class AllyScript : MonoBehaviour
 
     public void AmmoDelivered()
     {
-        ammo += 180;
+        ammo += 60;
     }
 }

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WinLoseConditionScript : MonoBehaviour
 {
     public GameObject gameOverPanel;
     public GameObject gameWonPanel;
     public Slider goalBar;
-    public static int alliesWithoutAmmo = 0;               //if allies end up without ammo you lose the game
+    public static int alliesWithoutAmmo = 0;               //if 5 allies end up without ammo you lose the game
     private int timesMovedForward = 0;
     public int winningCondition = 1;                        //set this to how many times you need to move forward to win the game
 
@@ -28,19 +29,19 @@ public class WinLoseConditionScript : MonoBehaviour
     {
         if (goal == 100)
         {
-            goal = 0;
-            timesMovedForward++;
+            /*timesMovedForward++;
             if (timesMovedForward == winningCondition)
-            {
+            {*/
                 gameWonPanel.SetActive(true);
-            }
+            //}
+            goal = 0;
         }
         if(alliesWithoutAmmo == 5 || mineActivated)
         {
             //lose game
             mineActivated = false;
             gameOverPanel.SetActive(true);
-            //Time.timeScale = 0.0f;
+            Time.timeScale = 0.0f;
         }
         if (!wait)
         {
@@ -52,14 +53,14 @@ public class WinLoseConditionScript : MonoBehaviour
     IEnumerator IncreaseGoalBar()
     {
         goal++;
-        int time = 1 + alliesWithoutAmmo;
+        int time = (1 + alliesWithoutAmmo)*3;
         yield return new WaitForSeconds(time);
         goalBar.value = goal;
         wait = false;
     }
 
-    void RestartGame()
+    public void RestartGame()
     {
-        
+        SceneManager.LoadScene("SampleScene");
     }
 }
