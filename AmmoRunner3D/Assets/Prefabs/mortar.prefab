@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1316900678412657386}
   - component: {fileID: 4158552261905939226}
   - component: {fileID: -1814910857987790869}
-  - component: {fileID: 5439108486327593721}
   m_Layer: 0
   m_Name: mortar
   m_TagString: Ally
@@ -132,19 +131,6 @@ MonoBehaviour:
   ammoType: 0
   rateOfFire: 1
   destroyed: 0
---- !u!135 &5439108486327593721
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5374984762278788483}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6146437427283959631
 PrefabInstance:
   m_ObjectHideFlags: 0

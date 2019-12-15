@@ -9,6 +9,9 @@ public class PlayerScript : MonoBehaviour
     float moveSpeed = 12f;
     Vector3 forward, right;
 
+    public Animation runningAnim;
+    public Animation idleAnim;
+
     private float initialMoveSpeed;
 
     public int[] ammoInventory;    //0 = light ammo, 1 = medium ammo, 2 = heavy ammo
@@ -37,7 +40,14 @@ public class PlayerScript : MonoBehaviour
     {
         //if (Input.anyKey)
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            runningAnim.Play();
             Move();
+        }
+        else
+        {
+            idleAnim.Play();
+        }
     }
 
 
