@@ -131,6 +131,22 @@ MonoBehaviour:
   ammoType: 0
   rateOfFire: 1
   destroyed: 0
+<<<<<<< HEAD
+=======
+--- !u!135 &5439108486327593721
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374984762278788483}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
+>>>>>>> parent of 9daabec... Last minute stress
 --- !u!1001 &6146437427283959631
 PrefabInstance:
   m_ObjectHideFlags: 0
