@@ -33,7 +33,7 @@ public class AllyScript : MonoBehaviour
                 StartCoroutine(DecreaseAmmo());          //decreases ammo every second
             }
         }
-        if(ammo < 51)
+        if(ammo < 60)
         {
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
         }
@@ -60,6 +60,6 @@ public class AllyScript : MonoBehaviour
 
     public void AmmoDelivered()
     {
-        ammo += 50;
+        ammo += 180;
     }
 }

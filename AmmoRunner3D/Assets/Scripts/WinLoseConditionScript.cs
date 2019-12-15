@@ -10,7 +10,7 @@ public class WinLoseConditionScript : MonoBehaviour
     public Slider goalBar;
     public static int alliesWithoutAmmo = 0;               //if allies end up without ammo you lose the game
     private int timesMovedForward = 0;
-    public int winningCondition = 3;                        //set this to how many times you need to move forward to win the game
+    public int winningCondition = 1;                        //set this to how many times you need to move forward to win the game
 
     public static bool mineActivated = false;
 
@@ -35,7 +35,7 @@ public class WinLoseConditionScript : MonoBehaviour
                 gameWonPanel.SetActive(true);
             }
         }
-        if(alliesWithoutAmmo == 3 || mineActivated)
+        if(alliesWithoutAmmo == 5 || mineActivated)
         {
             //lose game
             mineActivated = false;

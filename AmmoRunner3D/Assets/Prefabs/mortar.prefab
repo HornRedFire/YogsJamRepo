@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5956888078022969695}
   - component: {fileID: 1316900678412657386}
   - component: {fileID: 4158552261905939226}
+  - component: {fileID: -1814910857987790869}
   m_Layer: 0
   m_Name: mortar
   m_TagString: Untagged
@@ -113,3 +114,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 3.1327155, y: 0.13564058, z: -0.20668608}
+--- !u!114 &-1814910857987790869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374984762278788483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f00be8c8f58e7439d32c54d4ea594e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammo: 180
+  ammoType: 0
+  rateOfFire: 1
+  destroyed: 0

@@ -141,9 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f00be8c8f58e7439d32c54d4ea594e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammo: 10
-  ammoType: 2
-  rateOfFire: 2
+  ammo: 180
+  ammoType: 1
+  rateOfFire: 1
   destroyed: 0
 --- !u!1001 &307657349042728798
 PrefabInstance:

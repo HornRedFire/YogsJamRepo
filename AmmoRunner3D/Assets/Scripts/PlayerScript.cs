@@ -141,11 +141,11 @@ public class PlayerScript : MonoBehaviour
             int remainingAmmo = other.gameObject.GetComponent<AllyScript>().ammo;
             if (tempAmmoVar == 0)
             {
-                if(ammoInventory[0] != 0 && remainingAmmo <= 50)
+                if(ammoInventory[0] != 0 && remainingAmmo <= 60)
                 {
                     allyText.text = "Ally needs light ammo.\nPress R to give ammo.";
                 }
-                else if(ammoInventory[0] == 0 && remainingAmmo <= 50)
+                else if(ammoInventory[0] == 0 && remainingAmmo <= 60)
                 {
                     allyText.text = "Ally needs light ammo.";
                 }
@@ -156,11 +156,11 @@ public class PlayerScript : MonoBehaviour
             }
             else if(tempAmmoVar == 1)
             {
-                if (ammoInventory[1] != 0 && remainingAmmo <= 50)
+                if (ammoInventory[1] != 0 && remainingAmmo <= 60)
                 {
                     allyText.text = "Ally needs medium ammo.\nPress R to give ammo.";
                 }
-                else if (ammoInventory[1] == 0 && remainingAmmo <= 50)
+                else if (ammoInventory[1] == 0 && remainingAmmo <= 60)
                 {
                     allyText.text = "Ally needs medium ammo.";
                 }
@@ -171,11 +171,11 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-                if (ammoInventory[2] != 0 && remainingAmmo <= 50)
+                if (ammoInventory[2] != 0 && remainingAmmo <= 60)
                 {
                     allyText.text = "Ally needs heavy ammo.\nPress R to give ammo.";
                 }
-                else if (ammoInventory[2] == 0 && remainingAmmo <= 50)
+                else if (ammoInventory[2] == 0 && remainingAmmo <= 60)
                 {
                     allyText.text = "Ally needs heavy ammo.";
                 }
@@ -184,7 +184,7 @@ public class PlayerScript : MonoBehaviour
                     allyText.text = "Ally doesn't need to reload.";
                 }
             }
-            if (Input.GetKeyDown(KeyCode.R) && ammoInventory[tempAmmoVar] != 0 && remainingAmmo <= 50)    //"give" (hey there's the theme) ammo to ally
+            if (Input.GetKeyDown(KeyCode.R) && ammoInventory[tempAmmoVar] != 0 && remainingAmmo <= 60)    //"give" (hey there's the theme) ammo to ally
             {
                 ammoInventory[tempAmmoVar]--;
                 if(tempAmmoVar == 0)
