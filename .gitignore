@@ -58,3 +58,24 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+*.meta
+*.meta
+AmmoRunner3D/Assets/Animations/IdleAiming.fbx.meta
+AmmoRunner3D/Assets/Animations/IdleStanding.fbx.meta
+AmmoRunner3D/Assets/Animations/Mech_Rigged_Waiting_Idle.fbx.meta
+AmmoRunner3D/Assets/Animations/MechRiggedIdleStandingToAim.fbx.meta
+AmmoRunner3D/Assets/Animations/Shooting.fbx.meta
+AmmoRunner3D/Assets/Audio.meta
+AmmoRunner3D/Assets/Audio/Alliance-AssaultRifle_05-Single_Shot-04.wav.meta
+AmmoRunner3D/Assets/Audio/Blaster Machine_Gun-01-Burst-03.wav.meta
+AmmoRunner3D/Assets/Audio/Dark Drone_SI 03.wav.meta
+AmmoRunner3D/Assets/Audio/footstep_a_mech_mega_01.wav.meta
+AmmoRunner3D/Assets/Audio/footstep_a_mech_mega_02.wav.meta
+AmmoRunner3D/Assets/Audio/Heavy Magical Explosion_SI 03.wav.meta
+AmmoRunner3D/Assets/Audio/Resistance-AssaultRifle_03-Single_Shot-04.wav.meta
+AmmoRunner3D/Assets/Audio/transition elastic 076.wav.meta
+AmmoRunner3D/Assets/Audio/transition shutter 002.wav.meta
+AmmoRunner3D/Assets/Audio/transition shutter 009.wav.meta
+AmmoRunner3D/Assets/Audio/Utilities-Mine or System activation-13.wav.meta
+*.meta
+AmmoRunner3D/Assets/Animations/IdleAiming.fbx.meta
